@@ -3,19 +3,21 @@ import Header from './components/Header';
 import Categoriers from './components/Categories';
 import Sort from './components/Sort';
 import PizzaBlock from './components/PizzaBlock';
+import Skeleton from './components/PizzaBlock/Skeleton';
 
 import './scss/app.scss';
 
 function App() {
 	const [items, setItems] = React.useState([]);
-	const _linkBackEnd = 'https://62fa0e77ffd7197707e47316.mockapi.io/items';
+	const [isLoading, setIsLoading] = React.useState(true);
+
+	const _linkDataBase = 'https://62fa0e77ffd7197707e47316.mockapi.io/items';
 
 	React.useEffect(() => {
-		fetch(_linkBackEnd)
+		fetch(_linkDataBase)
 			.then((res) => res.json())
-			.then((arr) => {
-				setItems(arr);
-			});
+			.then((arr) => setItems(arr))
+			.then(() => setIsLoading(false));
 	}, []);
 
 	return (
@@ -29,9 +31,9 @@ function App() {
 					</div>
 					<h2 className="content__title">Все пиццы</h2>
 					<div className="content__items">
-						{items.map((item) => (
-							<PizzaBlock key={item.id} {...item} />
-						))}
+						{isLoading
+							? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
+							: items.map((item) => <PizzaBlock key={item.id} {...item} />)}
 					</div>
 				</div>
 			</div>
