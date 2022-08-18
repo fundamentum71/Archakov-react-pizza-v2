@@ -1,22 +1,21 @@
 .root {
 	li {
 		display: inline-block;
-
-		a {
-			color: #fe5f1e;
-			display: inline-block;
-			text-align: center;
-			line-height: 42px;
-			width: 45px;
-			height: 45px;
-			cursor: pointer;
-			border: 1px solid #fe5f1e;
-			border-radius: 30px;
-			margin-right: 10px;
-			&:hover {
-				background-color: #fe5f1e;
-				color: #ffffff;
-			}
+	}
+	a {
+		color: #fe5f1e;
+		display: inline-block;
+		text-align: center;
+		line-height: 42px;
+		width: 45px;
+		height: 45px;
+		cursor: pointer;
+		border: 1px solid #fe5f1e;
+		border-radius: 30px;
+		margin-right: 10px;
+		&:hover {
+			background-color: #fe5f1e;
+			color: #ffffff;
 		}
 	}
 }
@@ -25,7 +24,7 @@
 	.selected {
 		a {
 			background-color: #fe5f1e;
-			color: #fff !important;
+			color: #fff;
 		}
 	}
 }
