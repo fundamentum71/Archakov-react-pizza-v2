@@ -23,7 +23,7 @@ const Home = () => {
 	const category = categoryId > 0 ? `category=${categoryId}` : '';
 	const search = searchValue ? `&search=${searchValue}` : '';
 
-	const _linkDataBase = `https://62fa0e77ffd7197707e47316.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search} `;
+	const _linkDataBase = `https://62fa0e77ffd7197707e47316.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search} `;
 
 	React.useEffect(() => {
 		setIsLoading(true);
