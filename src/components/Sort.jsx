@@ -11,7 +11,7 @@ export const popupList = [
 	{ name: 'алфавиту (возр.)', sortProperty: '-title' },
 ];
 
-function Sort({}) {
+const Sort = () => {
 	const dispatch = useDispatch();
 	const sort = useSelector((state) => state.filter.sort);
 
@@ -55,6 +55,6 @@ function Sort({}) {
 			)}
 		</div>
 	);
-}
+};
 
 export default Sort;
