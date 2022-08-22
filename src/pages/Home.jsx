@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { setCategoryId, setPageCount } from '../redux/slices/filterSlice';
+import { setCategoryId, setPageCount, setFilters } from '../redux/slices/filterSlice';
 
 import Categoriers from '../components/Categories';
-import Sort from '../components/Sort';
+import Sort, { popupList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import { SearchConntext } from '../App';
 
 const Home = () => {
+	const navigate = useNavigate();
 	const { categoryId, sort, pageCount } = useSelector((state) => state.filter);
 	const sortType = sort.sortProperty;
 
@@ -37,6 +41,19 @@ const Home = () => {
 	const _linkDataBase = `https://62fa0e77ffd7197707e47316.mockapi.io/items?page=${pageCount}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search} `;
 
 	React.useEffect(() => {
+		if (window.location.search) {
+			const params = qs.parse(window.location.search.substring(1));
+			const sort = popupList.find((obj) => obj.sortProperty === params.sortProperty);
+			dispatch(
+				setFilters({
+					...params,
+					sort,
+				}),
+			);
+		}
+	}, []);
+
+	React.useEffect(() => {
 		setIsLoading(true);
 
 		axios
@@ -46,6 +63,16 @@ const Home = () => {
 
 		window.scrollTo(0, 0);
 	}, [categoryId, sortType, _linkDataBase, searchValue, pageCount]);
+
+	React.useEffect(() => {
+		const queryString = qs.stringify({
+			sortProperty: sort.sortProperty,
+			categoryId,
+			pageCount,
+		});
+		console.log(queryString);
+		navigate(`?${queryString}`);
+	}, [categoryId, sortType, pageCount]);
 
 	const pizzas = items.map((item) => <PizzaBlock key={item.id} {...item} />);
 	const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />);
