@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { setCategoryId } from '../redux/slices/filterSlice';
 
@@ -35,9 +36,10 @@ const Home = () => {
 
 	React.useEffect(() => {
 		setIsLoading(true);
-		fetch(_linkDataBase)
-			.then((res) => res.json())
-			.then((arr) => setItems(arr))
+
+		axios
+			.get(_linkDataBase)
+			.then((response) => setItems(response.data))
 			.then(() => setIsLoading(false));
 
 		window.scrollTo(0, 0);
