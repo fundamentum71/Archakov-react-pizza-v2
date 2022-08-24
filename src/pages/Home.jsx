@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-
+import React from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
@@ -9,7 +8,6 @@ import Sort, { popupList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
-import { SearchConntext } from '../App';
 import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
 
 const Home = () => {
@@ -18,7 +16,7 @@ const Home = () => {
 	const isSearch = React.useRef(false);
 	const isMounted = React.useRef(false);
 
-	const { categoryId, sort, pageCount } = useSelector(selectFilter);
+	const { categoryId, sort, pageCount, searchValue } = useSelector(selectFilter);
 	const { items, status } = useSelector(selectPizzaItems);
 	const sortType = sort.sortProperty;
 
@@ -30,19 +28,12 @@ const Home = () => {
 		dispatch(setPageCount(number));
 	};
 
-	const { searchValue } = useContext(SearchConntext);
-
-	//const [isLoading, setIsLoading] = React.useState(true);
-
 	const getPizzas = async () => {
 		const sortBy = sortType.replace('-', '');
 		const order = sortType.includes('-') ? 'asc' : 'desc';
 		const category = categoryId > 0 ? `category=${categoryId}` : '';
 		const search = searchValue ? `&search=${searchValue}` : '';
 		const _linkDataBase = `https://62fa0e77ffd7197707e47316.mockapi.io/items?page=${pageCount}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search} `;
-
-		//setIsLoading(true);
-
 		dispatch(fetchPizzas({ _linkDataBase }));
 	};
 
