@@ -3,14 +3,14 @@ import React, { useContext } from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { setCategoryId, setPageCount, setFilters } from '../redux/slices/filterSlice';
+import { setCategoryId, setPageCount, setFilters, selectFilter } from '../redux/slices/filterSlice';
 import Categoriers from '../components/Categories';
 import Sort, { popupList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import { SearchConntext } from '../App';
-import { fetchPizzas } from '../redux/slices/pizzasSlice';
+import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
 
 const Home = () => {
 	const navigate = useNavigate();
@@ -18,8 +18,8 @@ const Home = () => {
 	const isSearch = React.useRef(false);
 	const isMounted = React.useRef(false);
 
-	const { categoryId, sort, pageCount } = useSelector((state) => state.filter);
-	const { items, status } = useSelector((state) => state.pizza);
+	const { categoryId, sort, pageCount } = useSelector(selectFilter);
+	const { items, status } = useSelector(selectPizzaItems);
 	const sortType = sort.sortProperty;
 
 	const onClickCategory = (id) => {
