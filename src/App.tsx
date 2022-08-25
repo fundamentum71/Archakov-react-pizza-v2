@@ -1,5 +1,3 @@
-import React, { Children } from 'react';
-
 import Home from './pages/Home';
 import NotFound from './pages/NotFoun';
 import Cart from './pages/Cart';
