@@ -9,7 +9,6 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
 	const [activeSize, setActiveSize] = React.useState(0);
 
 	const dispatch = useDispatch();
-	//const {} = useSelector(state => state.cart)
 
 	const cartItem = useSelector(selectCartItemById(id));
 

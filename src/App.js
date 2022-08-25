@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { Children } from 'react';
 
-import Header from './components/Header';
 import Home from './pages/Home';
 import NotFound from './pages/NotFoun';
 import Cart from './pages/Cart';
+import FullPizza from './pages/FullPizza';
 
 import { Routes, Route } from 'react-router-dom';
 
 import './scss/app.scss';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
 	return (
-		<div className="wrapper">
-			<Header />
-			<div className="content">
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="*" element={<NotFound />} />
-					<Route path="cart" element={<Cart />} />
-				</Routes>
-			</div>
-		</div>
+		<Routes>
+			<Route path="/" element={<MainLayout />}>
+				<Route path="" element={<Home />} />
+				<Route path="*" element={<NotFound />} />
+				<Route path="cart" element={<Cart />} />
+				{/* После : нужно указать переменную */}
+				<Route path="pizza/:pizzaId" element={<FullPizza />} />
+			</Route>
+		</Routes>
 	);
 }
 

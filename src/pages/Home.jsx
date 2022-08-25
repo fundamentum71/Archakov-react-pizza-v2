@@ -1,6 +1,6 @@
 import React from 'react';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { setCategoryId, setPageCount, setFilters, selectFilter } from '../redux/slices/filterSlice';
 import Categoriers from '../components/Categories';
@@ -77,7 +77,11 @@ const Home = () => {
 		isSearch.current = false;
 	}, [categoryId, sortType, searchValue, pageCount]);
 
-	const pizzas = items.map((item) => <PizzaBlock key={item.id} {...item} />);
+	const pizzas = items.map((item) => (
+		<Link key={item.id} to={`/pizza/${item.id}`}>
+			<PizzaBlock {...item} />
+		</Link>
+	));
 	const skeletons = [...new Array(8)].map((_, i) => <Skeleton key={i} />);
 
 	return (
