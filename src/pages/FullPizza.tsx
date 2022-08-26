@@ -23,7 +23,7 @@ const FullPizza: React.FC = () => {
 	}, []);
 
 	if (!pizza) {
-		return <>'Загрузка..'</>;
+		return <>Загрузка..</>;
 	}
 	const { title, price, imageUrl } = pizza;
 
