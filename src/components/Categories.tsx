@@ -1,6 +1,11 @@
 import React from 'react';
 
-function Categoriers({ value, onClickCategory }) {
+type CategoriersProps = {
+	value: number;
+	onClickCategory: any;
+};
+
+const Categoriers: React.FC<CategoriersProps> = ({ value, onClickCategory }) => {
 	const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
 	return (
@@ -14,6 +19,6 @@ function Categoriers({ value, onClickCategory }) {
 			</ul>
 		</div>
 	);
-}
+};
 
 export default Categoriers;

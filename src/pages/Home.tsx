@@ -10,7 +10,7 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
 
-const Home = () => {
+const Home: React.FC = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const isSearch = React.useRef(false);
@@ -20,11 +20,11 @@ const Home = () => {
 	const { items, status } = useSelector(selectPizzaItems);
 	const sortType = sort.sortProperty;
 
-	const onClickCategory = (id) => {
+	const onClickCategory = (id: number) => {
 		dispatch(setCategoryId(id));
 	};
 
-	const onChangePage = (number) => {
+	const onChangePage = (number: number) => {
 		dispatch(setPageCount(number));
 	};
 
@@ -34,7 +34,10 @@ const Home = () => {
 		const category = categoryId > 0 ? `category=${categoryId}` : '';
 		const search = searchValue ? `&search=${searchValue}` : '';
 		const _linkDataBase = `https://62fa0e77ffd7197707e47316.mockapi.io/items?page=${pageCount}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search} `;
-		dispatch(fetchPizzas({ _linkDataBase }));
+		dispatch(
+			//@ts-ignore
+			fetchPizzas({ _linkDataBase }),
+		);
 	};
 
 	//Если изменили параметры и был первый рендер;
@@ -77,7 +80,7 @@ const Home = () => {
 		isSearch.current = false;
 	}, [categoryId, sortType, searchValue, pageCount]);
 
-	const pizzas = items.map((item) => (
+	const pizzas = items.map((item: any) => (
 		<Link key={item.id} to={`/pizza/${item.id}`}>
 			<PizzaBlock {...item} />
 		</Link>
