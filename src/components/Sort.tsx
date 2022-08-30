@@ -6,6 +6,11 @@ type PopupItem = {
 	name: string;
 	sortProperty: string;
 };
+
+type PopupClick = MouseEvent & {
+	path: Node[];
+};
+
 export const popupList: PopupItem[] = [
 	{ name: 'популярности (убыв.)', sortProperty: 'rating' },
 	{ name: 'популярности (возр.)', sortProperty: '-rating' },
@@ -29,8 +34,11 @@ const Sort = () => {
 
 	React.useEffect(() => {
 		//функция для того чтобы можно было очистить обработчик
-		const handleClickOutside = (event: any) => {
-			if (!event.path.includes(sortRef.current)) {
+		const handleClickOutside = (event: MouseEvent) => {
+			//лайвхак, чтобы убрать ошибку
+			const _event = event as PopupClick;
+			//*********** */
+			if (sortRef.current && !_event.path.includes(sortRef.current)) {
 				setIsVisablePopup(false);
 			}
 		};

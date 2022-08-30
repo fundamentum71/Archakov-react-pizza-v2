@@ -2,12 +2,12 @@ import React from 'react';
 
 type CategoriersProps = {
 	value: number;
-	onClickCategory: any;
+	onClickCategory: (i: number) => void;
 };
 
-const Categoriers: React.FC<CategoriersProps> = ({ value, onClickCategory }) => {
-	const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
+const Categoriers: React.FC<CategoriersProps> = ({ value, onClickCategory }) => {
 	return (
 		<div className="categories">
 			<ul>
