@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeItem, addItem, minuseItem } from '../redux/slices/cartSlice';
+import { removeItem, addItem, minuseItem, CartItem } from '../redux/slices/cartSlice';
 
 type CartItemProps = {
 	id: string;
@@ -12,14 +12,22 @@ type CartItemProps = {
 	imageUrl: string;
 };
 
-const CartItem: React.FC<CartItemProps> = ({ id, title, type, price, size, count, imageUrl }) => {
+const CartItemBlock: React.FC<CartItemProps> = ({
+	id,
+	title,
+	type,
+	price,
+	size,
+	count,
+	imageUrl,
+}) => {
 	const dispatch = useDispatch();
 
 	const onClickPluse = () => {
 		dispatch(
 			addItem({
 				id,
-			}),
+			} as CartItem),
 		);
 	};
 
@@ -105,4 +113,4 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, type, price, size, count
 	);
 };
 
-export default CartItem;
+export default CartItemBlock;
