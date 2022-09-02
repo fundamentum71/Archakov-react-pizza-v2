@@ -22,7 +22,7 @@ function Header() {
 						</div>
 					</div>
 				</Link>
-				<Search />
+				{location.pathname !== '/cart' && <Search />}
 				<div className="header__cart">
 					{/* условие чтобы скрыть кнопку корзины */}
 					{location.pathname !== '/cart' && (
