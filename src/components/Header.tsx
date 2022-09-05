@@ -1,11 +1,11 @@
 import React from 'react';
 import logoSvg from '../assets/img/pizza-logo.svg';
 import { Link, useLocation } from 'react-router-dom';
-import Search from './Search';
+import { Search } from '../components';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../redux/cart/selectors';
 
-function Header() {
+export const Header: React.FC = () => {
 	const { totalPrice, items } = useSelector(selectCart);
 	const totalCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 	const isMounted = React.useRef(false);
@@ -74,6 +74,4 @@ function Header() {
 			</div>
 		</div>
 	);
-}
-
-export default Header;
+};

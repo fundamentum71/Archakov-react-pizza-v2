@@ -7,7 +7,7 @@ type CategoriersProps = {
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
-const Categoriers: React.FC<CategoriersProps> = React.memo(({ value, onClickCategory }) => {
+export const Categories: React.FC<CategoriersProps> = React.memo(({ value, onClickCategory }) => {
 	return (
 		<div className="categories">
 			<ul>
@@ -20,5 +20,3 @@ const Categoriers: React.FC<CategoriersProps> = React.memo(({ value, onClickCate
 		</div>
 	);
 });
-
-export default Categoriers;

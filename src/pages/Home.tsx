@@ -2,11 +2,11 @@ import React from 'react';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import Categoriers from '../components/Categories';
-import Sort, { popupList } from '../components/Sort';
-import PizzaBlock from '../components/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination';
+
+import { popupList } from '../components/Sort';
+
+import { Categories, PizzaBlock, Skeleton, Pagination, Sort } from '../components';
+
 import { useAppDispatch } from '../redux/store';
 import { selectFilter } from '../redux/filter/selectors';
 import { selectPizzaItems } from '../redux/pizza/selectors';
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
 	return (
 		<div className="container">
 			<div className="content__top">
-				<Categoriers value={categoryId} onClickCategory={onClickCategory} />
+				<Categories value={categoryId} onClickCategory={onClickCategory} />
 				<Sort value={sort} />
 			</div>
 			<h2 className="content__title">Все пиццы</h2>
