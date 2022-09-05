@@ -1,5 +1,4 @@
 import React from 'react';
-import { useWhyDidYouUpdate } from 'ahooks';
 
 type CategoriersProps = {
 	value: number;
@@ -9,7 +8,6 @@ type CategoriersProps = {
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
 const Categoriers: React.FC<CategoriersProps> = React.memo(({ value, onClickCategory }) => {
-	//useWhyDidYouUpdate('Categoriers', { value, onClickCategory });
 	return (
 		<div className="categories">
 			<ul>
