@@ -98,6 +98,31 @@ body {
 			margin: 0;
 		}
 	}
+	&__fullpizza {
+		display: flex;
+	}
+	.fullpizza {
+		&__img {
+			width: 400px;
+			height: 400px;
+			margin-right: 10%;
+		}
+		&__desc {
+			h2 {
+				margin-bottom: 30px;
+			}
+			p {
+				margin-bottom: 20px;
+			}
+			h4 {
+				margin-bottom: 100%;
+			}
+			a {
+				display: flex;
+				justify-content: end;
+			}
+		}
+	}
 }
 
 .cart {
