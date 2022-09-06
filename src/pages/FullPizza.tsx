@@ -45,11 +45,23 @@ const FullPizza: React.FC = () => {
 	}
 	const { title, price, imageUrl, types, sizes, id, description } = pizza;
 
+	const nowPriceFunction = (price: number, activeSize: number) => {
+		switch (activeSize) {
+			case 0:
+				return price;
+			case 1:
+				return (price = price + 75);
+			case 2:
+				return (price = price + 120);
+		}
+	};
+
 	const onClickAdd = () => {
+		const nowPrice = nowPriceFunction(price, activeSize);
 		const item: CartItem = {
 			id,
 			title,
-			price,
+			price: nowPrice ? nowPrice : 0,
 			imageUrl,
 			type: typeNames[activeType],
 			size: sizes[activeSize],
@@ -91,7 +103,7 @@ const FullPizza: React.FC = () => {
 								</ul>
 							</div>
 							<div className="pizza-block__bottom">
-								<div className="pizza-block__price">от {price} ₽</div>
+								<div className="pizza-block__price">от {nowPriceFunction(price, activeSize)} ₽</div>
 								<button onClick={onClickAdd} className="button button--outline button--add">
 									<svg
 										width="12"

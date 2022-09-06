@@ -28,14 +28,34 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({
 	const cartItem = useSelector(selectCartItemById(id));
 	const [activeType, setActiveType] = React.useState(0);
 	const [activeSize, setActiveSize] = React.useState(0);
+	//const [activePrice, setActivePrice] = React.useState(price); //для изменения цены зависящий от радиуса
+
+	const nowPriceFunction = (price: number, activeSize: number) => {
+		switch (activeSize) {
+			case 0:
+				return price;
+			case 1:
+				return (price = price + 75);
+			case 2:
+				return (price = price + 120);
+
+			default:
+				{
+					console.log('что-то не так в switch');
+				}
+				break;
+		}
+	};
 
 	const addedCount = cartItem ? cartItem.count : 0;
 
 	const onClickAdd = () => {
+		const nowPrice = nowPriceFunction(price, activeSize);
+		console.log('nowPrice:', nowPrice);
 		const item: CartItem = {
 			id,
 			title,
-			price,
+			price: nowPrice ? nowPrice : 0,
 			imageUrl,
 			type: typeNames[activeType],
 			size: sizes[activeSize],
@@ -74,7 +94,7 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({
 					</ul>
 				</div>
 				<div className="pizza-block__bottom">
-					<div className="pizza-block__price">от {price} ₽</div>
+					<div className="pizza-block__price">от {nowPriceFunction(price, activeSize)} ₽</div>
 					<button onClick={onClickAdd} className="button button--outline button--add">
 						<svg
 							width="12"
