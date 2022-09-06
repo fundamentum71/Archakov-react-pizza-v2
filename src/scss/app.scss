@@ -97,15 +97,20 @@ body {
 		.content__title {
 			margin: 0;
 		}
+		@media (max-width: 540px) {
+			margin: 0 auto 0 auto;
+		}
 	}
 	&__fullpizza {
 		display: flex;
 		justify-content: center;
+		@media (max-width: 891px) {
+			display: block;
+		}
 	}
 	.fullpizza {
 		&__img {
 			width: 400px;
-			height: 400px;
 			margin-right: 10%;
 		}
 		&__desc {
@@ -121,6 +126,13 @@ body {
 			a {
 				display: flex;
 				justify-content: end;
+			}
+		}
+		@media (max-width: 891px) {
+			&__img {
+				width: 300px;
+				margin: 0 auto;
+				display: block;
 			}
 		}
 	}
@@ -192,6 +204,25 @@ body {
 		padding-top: 30px;
 		margin-top: 30px;
 
+		@media (max-width: 720px) {
+			display: flex;
+			//width: 300px;
+			//margin: 30px auto;
+			&-block-pizza {
+				width: 300px;
+				margin: 0 auto 20px auto;
+			}
+			&-block-func {
+				width: 100%;
+				display: block !important;
+			}
+		}
+
+		&-block-func {
+			width: 100%;
+			display: flex;
+		}
+
 		&-img {
 			display: flex;
 			align-items: center;
@@ -221,6 +252,9 @@ body {
 				font-size: 18px;
 				color: #8d8d8d;
 			}
+		}
+		@media (max-width: 830px) {
+			text-align: center;
 		}
 
 		&-count {
@@ -274,7 +308,9 @@ body {
 		&-remove {
 			display: flex;
 			align-items: center;
-			justify-content: flex-end;
+
+			height: 10px;
+			justify-content: center;
 			width: 4%;
 
 			.button {
@@ -370,7 +406,7 @@ body {
 
 	&--empty {
 		margin: 0 auto;
-		width: 560px;
+		max-width: 560px;
 		text-align: center;
 
 		h2 {
@@ -402,6 +438,35 @@ body {
 			margin: 0 auto;
 			font-weight: 600;
 			font-size: 18px;
+		}
+		@media (max-width: 770px) {
+			max-width: 450px;
+			h2 {
+				font-size: 30px;
+			}
+
+			p {
+				font-size: 18px;
+			}
+
+			img {
+				width: 300px;
+			}
+		}
+		@media (max-width: 540px) {
+			max-width: 380px;
+			h2 {
+				font-size: 22px;
+			}
+
+			p {
+				font-size: 15px;
+			}
+
+			img {
+				width: 250px;
+				margin: 45px auto 60px auto;
+			}
 		}
 	}
 }
