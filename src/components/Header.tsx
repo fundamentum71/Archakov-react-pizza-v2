@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
 						</div>
 					</div>
 				</Link>
-				{location.pathname !== '/cart' && location.pathname !== '/pizza' && <Search />}
+				{location.pathname == '/' && <Search />}
 				<div className="header__cart">
 					{/* условие чтобы скрыть кнопку корзины */}
 					{location.pathname !== '/cart' && (

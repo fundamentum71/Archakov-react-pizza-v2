@@ -15,6 +15,7 @@ const FullPizza: React.FC = () => {
 		sizes: number[];
 		count: number;
 		imageUrl: string;
+		description: string;
 	}>();
 	const { pizzaId } = useParams();
 	const navigate = useNavigate();
@@ -42,7 +43,7 @@ const FullPizza: React.FC = () => {
 	if (!pizza) {
 		return <>Загрузка..</>;
 	}
-	const { title, price, imageUrl, types, sizes, id } = pizza;
+	const { title, price, imageUrl, types, sizes, id, description } = pizza;
 
 	const onClickAdd = () => {
 		const item: CartItem = {
@@ -63,7 +64,7 @@ const FullPizza: React.FC = () => {
 				<img className="fullpizza__img" src={imageUrl} alt={title} />
 				<div className="fullpizza__desc">
 					<h2>{title}</h2>
-					<p>Очень вкусная пизза</p>
+					<p>{description}</p>
 
 					<div className="pizza-block-wrapper">
 						<div className="pizza-block">
