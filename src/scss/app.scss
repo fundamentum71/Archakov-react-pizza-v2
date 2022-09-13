@@ -143,6 +143,13 @@ body {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		@media (max-width: 430px) {
+			flex-wrap: wrap;
+			justify-content: center;
+			.cart__clear {
+				margin: 5px;
+			}
+		}
 	}
 
 	.content__title {
@@ -203,18 +210,47 @@ body {
 		border-top: 1px solid $gray-line;
 		padding-top: 30px;
 		margin-top: 30px;
+		position: relative;
 
 		@media (max-width: 720px) {
-			display: flex;
+			display: block;
 			//width: 300px;
 			//margin: 30px auto;
 			&-block-pizza {
 				width: 300px;
 				margin: 0 auto 20px auto;
+				.cart__item-img {
+					width: 160px;
+					margin: 0 auto;
+					img {
+						display: block;
+						width: 160px;
+						height: 160px;
+						margin: 0 auto;
+					}
+				}
 			}
 			&-block-func {
 				width: 100%;
 				display: block !important;
+				.cart__item-info {
+					width: 70%;
+					margin: 0 auto;
+				}
+				.cart__item-count {
+					width: 25%;
+					margin: 10px auto;
+				}
+				.cart__item-price {
+					margin: 0 auto;
+				}
+			}
+			&-block-remove {
+				.cart__item-remove {
+					position: absolute;
+					transform: translateY(-120px);
+					right: 20px;
+				}
 			}
 		}
 
@@ -305,12 +341,14 @@ body {
 			}
 		}
 
-		&-remove {
-			display: flex;
-			align-items: center;
+		&-block-remove {
+			position: relative;
+		}
 
-			height: 10px;
-			justify-content: center;
+		&-remove {
+			position: relative;
+			transform: translateY(-50%);
+			top: 50%;
 			width: 4%;
 
 			.button {
@@ -347,6 +385,14 @@ body {
 			display: flex;
 			justify-content: space-between;
 
+			@media (max-width: 520px) {
+				justify-content: center;
+				flex-wrap: wrap;
+				span {
+					margin: 5px;
+				}
+			}
+
 			span {
 				font-size: 22px;
 
@@ -362,6 +408,15 @@ body {
 			display: flex;
 			justify-content: space-between;
 			margin-top: 40px;
+			@media (max-width: 520px) {
+				flex-wrap: wrap;
+				flex-direction: column-reverse;
+				justify-content: center;
+				align-items: center;
+				.go-back-btn {
+					margin-top: 20px;
+				}
+			}
 
 			.go-back-btn {
 				display: flex;
